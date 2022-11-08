@@ -1,31 +1,41 @@
 const readLine = require('prompt-sync')();
 
-function sorteio(n){
+function checarGanhou(sorteado, numUsu){
     
-    let a = Number(readLine)
     let msg = "";
     
-    if (a == n ){
+    if (sorteado == numUsu){
         msg = "você acertou";
     }
-    else if(a < n){
+    else if(numUsu > sorteado){
         msg = "é maior";
     }
-    else if(a > n){
+    else if(numUsu < sorteado){
         msg = "é menor";
     }
     
-    return a;
+    return msg;
 
     }
     
 
     function Main(){
-        console.log(parseInt(Math.random()*1000));
+        let sorteado = parseInt(Math.random()*1000);
+
+        console.log(sorteado);
         console.log("Tente a sorte");
 
-        let a = Number(readLine())
-        sorteio(a);
+        for (let tentativa = 1; tentativa <= 10; tentativa++) {
+            
+            let num = readLine();
+            let resp = checarGanhou(sorteado, num);
+            if(num == "você acertou"){
+                break;
+            }
+            console.log(resp);
+        }
+
+        
     }
     Main()
 
